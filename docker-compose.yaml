@@ -14,20 +14,23 @@ services:
           # - ./app:/app
           - /var/www/html/vendor
           - ./app:/var/www/html
+      environment:
+         MYSQL_HOST: db
+         MYSQL_USER: ${DB_USER}
+         MYSQL_PASSWORD: ${DB_PASS}
+         MYSQL_DATABASE: ${DB_NAME}
+
   # mysql
   db:
-      image: mysql:8.0
+      image: mariadb
       volumes:
           - mysqldata:/var/lib/mysql
-      ports:
-          - "3306:3306"
       restart: unless-stopped
       environment:
-          MYSQL_ROOT_PASSWORD: secret
-          MYSQL_USER: user
-          MYSQL_PASSWORD: secret
-          MYSQL_DATABASE: docker-php
+          MYSQL_ROOT_PASSWORD: ${DB_PASS}
+          MYSQL_USER: ${DB_USER}
+          MYSQL_PASSWORD: ${DB_PASS}
+          MYSQL_DATABASE: ${DB_NAME}
   
 volumes:
   mysqldata:
-  # redos
