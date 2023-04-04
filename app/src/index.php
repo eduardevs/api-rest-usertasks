@@ -12,7 +12,7 @@ use App\Controllers\TaskController;
 
 require dirname(__DIR__)."/vendor/autoload.php";
 
-set_error_handler("ErrorHandler::handleError");
+set_error_handler("App\ErrorHandler::handleError");
 set_exception_handler("App\ErrorHandler::handleException");
 
 $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
